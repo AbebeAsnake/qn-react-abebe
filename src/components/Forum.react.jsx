@@ -1,5 +1,8 @@
 /** define the parent component */
 import React from 'react';
+import ForumAnswers from './Forum.Answers.react';
+import ForumQuestion from './Forum.Question.react';
+import ForumAddAnswerBox from './ForumAddAnswerBox.react';
 import ForumHeader from "./ForumHeader.react";
 
 class Forum extends React.Component {
@@ -24,10 +27,20 @@ class Forum extends React.Component {
         
     };
 
-    render() {
-       
+    render() { 
 
-        return( <div><ForumHeader allAnswers ={this.state.allAnswers} /></div>);
+        return( 
+        <div>
+            <ForumHeader />
+            <div className="container">
+                <ForumQuestion/>
+                <hr/>
+            <ForumAnswers allAnswers={this.state.allAnswers}/>
+            <hr/>
+            <h4>Add an answer</h4>
+            <ForumAddAnswerBox/>
+            </div>
+        </div>);
        
     }
 };

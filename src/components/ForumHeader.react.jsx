@@ -1,6 +1,5 @@
 import React from 'react';
-import{Nav, Button,NavDropdown,Form, FormControl}  from 'react-bootstrap';
-import Navbar from 'react-bootstrap/Navbar';
+import {Nav} from 'react-bootstrap';
 
 
 class ForumHeader extends React.Component
@@ -11,10 +10,10 @@ render(){
     return(
       
         <Nav className="mr-auto">
-          <div className="container">
+          <div className="container-fluid">
 
-            <div className="nav-title">
-              <a className="nav regular" href="#"> React Forum</a>
+            <div className="navbar-header">
+              <a className="navbar-brand" href="#"> React Forum</a>
             </div>
           </div>
         </Nav>

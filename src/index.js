@@ -4,6 +4,7 @@ import './index.css';
 // import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Forum from "./components/Forum.react";
+import { EventEmitter } from "./EvenEmitter";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,3 +17,14 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+const myEmitter = new EventEmitter();
+myEmitter.on('STARTED_THE_APP', function(){
+  console.log('started the app');
+});
+
+myEmitter.on('STARTED_THE_APP', function(){
+  console.log('started the app #2');
+});
+
+myEmitter.emit('STARTED_THE_APP');

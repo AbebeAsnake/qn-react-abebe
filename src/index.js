@@ -5,6 +5,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Forum from "./components/Forum.react";
 import { EventEmitter } from "./EvenEmitter";
+import {ForumDispatcher}from "./js/dispatcher/ForumDispatcher"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -28,3 +29,8 @@ myEmitter.on('STARTED_THE_APP', function(){
 });
 
 myEmitter.emit('STARTED_THE_APP');
+
+ForumDispatcher.register(function(action){
+console.log('received action');
+console.log(action);
+})

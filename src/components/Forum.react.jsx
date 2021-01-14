@@ -1,5 +1,6 @@
 /** define the parent component */
 import React from 'react';
+import { ForumDispatcher } from '../js/dispatcher/ForumDispatcher';
 import ForumAnswers from './Forum.Answers.react';
 import ForumQuestion from './Forum.Question.react';
 import ForumAddAnswerBox from './ForumAddAnswerBox.react';
@@ -27,6 +28,12 @@ class Forum extends React.Component {
         
     };
 
+_onAddAnswer(answerText){
+ForumDispatcher.Dispatcher({
+    actionType: 'FORUM ANSWER ADDED',
+    newAnswer: answerText
+})
+};
     render() { 
 
         return( 
@@ -38,7 +45,7 @@ class Forum extends React.Component {
             <ForumAnswers allAnswers={this.state.allAnswers}/>
             <hr/>
             <h4>Add an answer</h4>
-            <ForumAddAnswerBox/>
+            <ForumAddAnswerBox onAddAnswer ={this._onAddAnswer}/>
             </div>
         </div>);
        

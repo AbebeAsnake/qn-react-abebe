@@ -24,7 +24,7 @@ Dispatcher.prototype.Dispatcher = function (action) { // this is to let the rest
                                               // certain action occured which is just an objec, we don`t care what action has been sent 
                                               // we just need to invoke every function that has been registered with the dispatcher
                                               // every function/method attached to the callabck object
-    for(const id in this._callabcks){
+    for(const id in this._callbacks){
         this._callbacks[id](action); // invoke and pass the action that has been dispatched , every call back will be run
     }
     

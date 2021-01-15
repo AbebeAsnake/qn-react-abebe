@@ -12,13 +12,21 @@ class Forum extends React.Component {
        
             allAnswers: ForumStore.getAnswers()     
     };
-
-_onAddAnswer(answerText){
+_onChange =()=>{
+    this.setState({allAnswers: ForumStore.getAnswers()});
+}
+componentDidMount(){
+    ForumStore.addChangeListener(this._onChange);
+}
+_onAddAnswer=(answerText)=>{
 ForumDispatcher.Dispatcher({
     actionType: 'FORUM_ANSWER_ADDED',
     newAnswer: answerText
 })
 };
+componentWillUnmount(){
+    ForumStore.removeListener(this._onChange); 
+}
     render() { 
 
         return( 

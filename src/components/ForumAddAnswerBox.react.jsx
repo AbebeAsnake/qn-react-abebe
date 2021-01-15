@@ -8,7 +8,7 @@ class ForumAddAnswerBox extends React.Component{
 this.props.onAddAnswer(this.state.value);
     };
     _onChange =(event) => {
-this.setState({vale: event.target.value});
+this.setState({value: event.target.value});
     }
     render(){
         return(

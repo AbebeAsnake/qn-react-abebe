@@ -19,6 +19,12 @@ const   answerData ={
 
 export const ForumStore = new EventEmitter();
 
+ForumStore.emitChange = function(){
+    this.emit('change');
+}
+ForumStore.addChangeListener = function(listener){
+this.on('change', listener);
+}
 ForumStore.getAnswers = function(){
 
 return answerData
@@ -28,15 +34,17 @@ ForumStore.addAnswer = function(newAnswer){
     answerData[Object.keys(answerData).length + 1] = {
         body: newAnswer,
         correct: false
-    }
-
+    };
+    this.emitChange();
+}
     ForumStore.markAsCorrect = function(id){
         for(const key in answerData){
             answerData[key].correct = false;
         }
         answerData[id].correct = true;
+        this.emitChange();
     }
-}
+
 ForumDispatcher.register(function(action){
     switch(action.actionType){
         case 'FORUM_ANSWER_ADDED': {
@@ -49,6 +57,7 @@ ForumDispatcher.register(function(action){
         ForumStore.markAsCorrect(action.id);
 break;
     }
+    default:
 
 }
     });

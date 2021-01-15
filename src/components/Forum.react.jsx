@@ -5,32 +5,17 @@ import ForumAnswers from './Forum.Answers.react';
 import ForumQuestion from './Forum.Question.react';
 import ForumAddAnswerBox from './ForumAddAnswerBox.react';
 import ForumHeader from "./ForumHeader.react";
-
+import {ForumStore} from '../js/stores/ForumStore'
 class Forum extends React.Component {
 
    state = {
        
-            allAnswers:{
-                "1": {
-                    body: "Isn`t that about time travel?",
-                    correct: false
-
-            },
-            "2": {
-                body: "React and Flux are a tool and methodologies for building the fron end of web applications",
-                correct: false
-            },
-            "3":{
-                body: "React is a synonym for 'respond'",
-                correct: false
-            }
-        }
-        
+            allAnswers: ForumStore.getAnswers()     
     };
 
 _onAddAnswer(answerText){
 ForumDispatcher.Dispatcher({
-    actionType: 'FORUM ANSWER ADDED',
+    actionType: 'FORUM_ANSWER_ADDED',
     newAnswer: answerText
 })
 };

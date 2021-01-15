@@ -5,18 +5,24 @@ class ForumAnswer extends React.Component{
     _markCorrect=()=>{
         this.props.onMarkCorrect(this.props.id);
     }
+
+  
     render(){
         const answer = this.props.answer;
+        let makAnswer;
+        if(!answer.correct){
+            makAnswer = <div className="pull-right"><small><a href="#" onClick={this._markCorrect}>Mark as correct</a></small></div>
+        }
+
+        var classNames = "panel-body";
+        if(answer.correct){classNames += " bg-success"};
         return(
 <div className="panel panel-default">
-    <div className="panel-body">
+    <div className={classNames}>
         {answer.body}
-<div className="pull-right">
-<small><a href="#" onClick={this._markCorrect}>Mark as correct</a></small>
+{makAnswer}
 </div>
     </div>
-
-</div>
         )
     }
 }

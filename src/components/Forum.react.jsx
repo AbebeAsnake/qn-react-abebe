@@ -1,33 +1,44 @@
 /** define the parent component */
 import React from 'react';
+import { ForumDispatcher } from '../js/dispatcher/ForumDispatcher';
+import ForumAnswers from './Forum.Answers.react';
+import ForumQuestion from './Forum.Question.react';
+import ForumAddAnswerBox from './ForumAddAnswerBox.react';
 import ForumHeader from "./ForumHeader.react";
-
+import {ForumStore} from '../js/stores/ForumStore';
+import ForumActions from '../actions/ForumActions';
 class Forum extends React.Component {
 
    state = {
        
-            allAnswers:{
-                "1": {
-                    body: "Isn`t that about time travel?",
-                    correct: false
-
-            },
-            "2": {
-                body: "React and Flux are a tool and methodologies for building the fron end of web applications",
-                correct: false
-            },
-            "3":{
-                body: "React is a synonym for 'respond'",
-                correct: false
-            }
-        }
-        
+            allAnswers: ForumStore.getAnswers()     
     };
+_onChange =()=>{
+    this.setState({allAnswers: ForumStore.getAnswers()});
+}
+componentDidMount(){
+    ForumStore.addChangeListener(this._onChange);
+}
+_onAddAnswer=(answerText)=>{
+    ForumActions.addNewAnswer(answerText);
+};
+componentWillUnmount(){
+    ForumStore.removeListener(this._onChange); 
+}
+    render() { 
 
-    render() {
-       
-
-        return( <div><ForumHeader allAnswers ={this.state.allAnswers} /></div>);
+        return( 
+        <div>
+            <ForumHeader />
+            <div className="container">
+                <ForumQuestion/>
+                <hr/>
+            <ForumAnswers allAnswers={this.state.allAnswers}/>
+            <hr/>
+            <h4>Add an answer</h4>
+            <ForumAddAnswerBox onAddAnswer ={this._onAddAnswer}/>
+            </div>
+        </div>);
        
     }
 };

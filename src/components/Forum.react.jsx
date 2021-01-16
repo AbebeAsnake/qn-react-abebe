@@ -5,7 +5,8 @@ import ForumAnswers from './Forum.Answers.react';
 import ForumQuestion from './Forum.Question.react';
 import ForumAddAnswerBox from './ForumAddAnswerBox.react';
 import ForumHeader from "./ForumHeader.react";
-import {ForumStore} from '../js/stores/ForumStore'
+import {ForumStore} from '../js/stores/ForumStore';
+import ForumActions from '../actions/ForumActions';
 class Forum extends React.Component {
 
    state = {
@@ -19,10 +20,7 @@ componentDidMount(){
     ForumStore.addChangeListener(this._onChange);
 }
 _onAddAnswer=(answerText)=>{
-ForumDispatcher.Dispatcher({
-    actionType: 'FORUM_ANSWER_ADDED',
-    newAnswer: answerText
-})
+    ForumActions.addNewAnswer(answerText);
 };
 componentWillUnmount(){
     ForumStore.removeListener(this._onChange); 

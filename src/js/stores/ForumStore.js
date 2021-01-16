@@ -1,6 +1,6 @@
 import { EventEmitter } from "../../EvenEmitter";
-import {ForumDispatcher}from "../dispatcher/ForumDispatcher"
-
+import {ForumDispatcher}from "../dispatcher/ForumDispatcher";
+import ForumConstants from '../../constants/ForumConstants';
 const   answerData ={
     "1": {
         body: "Isn`t that about time travel?",
@@ -47,12 +47,12 @@ ForumStore.addAnswer = function(newAnswer){
 
 ForumDispatcher.register(function(action){
     switch(action.actionType){
-        case 'FORUM_ANSWER_ADDED': {
+        case ForumConstants.FORUM_ANSWER_ADDED: {
             console.log('Answer Added!');
-            ForumStore.addAnswer(action.newAnswer);
+            ForumStore.addAnswer(action.answer);
             break;
     }
-    case 'FORUM_ANSWER_MARKED_CORRECT':{
+    case ForumConstants.FORUM_ANSWER_MARKED_CORRECT:{
         console.log('Answer marked as correct!');
         ForumStore.markAsCorrect(action.id);
 break;

@@ -1,15 +1,12 @@
 import React from 'react';
 import { ForumDispatcher } from '../js/dispatcher/ForumDispatcher';
 import ForumAnswer from "./ForumAnswer.react";
-
+import ForumActions from '../actions/ForumActions'
 class ForumAnswers extends React.Component{
 
   
     _onMarkCorrect (id){
-        ForumDispatcher.Dispatcher({
-            actionType: 'FORUM_ANSWER_MARKED_CORRECT',
-            id: id
-        });
+        ForumActions.markAnswerCorrect(id);
 
     }
     render(){
